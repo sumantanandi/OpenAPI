@@ -1,0 +1,103 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Live Better Users.
+  license:
+    name: Medibank
+paths:
+  /v1/users/appDevices:
+    post:
+      summary: Connect device data
+      tags:
+        - devices
+      parameters:
+        - name: APISessionToken
+          description: API token Managment info
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectDevicesRequest"
+      responses:
+        '200':
+          description: Connect Devices Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectDevicesResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    ConnectDevicesRequest:
+      type: object
+      required:
+        - vendorId
+        - serviceUserId
+        - creditCard
+        - memberName
+      properties:
+        vendorId:
+          type: string
+          minimum: 1
+          maximum: 10
+        serviceUserId:
+          type: string
+        creditCard:
+          type: string
+          pattern: '^4[0-9]{12}(?:[0-9]{3})?$'
+        memberName :
+          type: string
+        email      :
+          type: string
+    ConnectDevicesResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    Error:
+      type: object
+      required:
+        - errorCode
+        - errorDesc
+      properties:
+        errorCode:
+          type: string
+        errorDesc:
+          type: string
+        serviceType:
+          type: string
+        validationErrorDetails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidationErrorDetails"
+        externalError:
+          type: object
+          properties:
+            errorCode:
+              type: string
+            errorDesc:
+              type: string
+            userErrorDesc:
+              type: string
+            externalSystemName:
+              type: string
+    ValidationErrorDetails:
+      type: object
+      properties:
+        attributeName:
+          type: string
+        errorDescription:
+          type: string
+        userErrorDescription:
+          type: string
