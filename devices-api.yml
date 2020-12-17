@@ -1,0 +1,105 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Live Better Users
+  license:
+    name: MIT
+paths:
+  /v1/users/appDevices:
+    get:
+      summary: Get all devices info
+      tags:
+        - devices
+      parameters:
+        - $ref: "#/components/parameters/bpId"
+      responses:
+        '200':
+          description: Connect Devices Response
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/AppDevicesResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/Error"
+    post:
+      summary: Connect device data
+      tags:
+        - devices
+      parameters:
+        - $ref: "#/components/parameters/bpId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/devices.yml#/ConnectDevicesRequest"
+      responses:
+        '200':
+          description: success
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/Error"
+    put:
+      summary: device sync
+      tags:
+        - devices
+      parameters:
+        - $ref: "#/components/parameters/bpId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/devices.yml#/DevicesSyncRequest"
+      responses:
+        '200':
+          description: Connect Devices Response
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/AppDevicesInfo"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/Error"
+  /v1/users/appDevices/{vendorId}:
+    delete:
+      summary: disconnect device
+      tags:
+        - devices
+      parameters:
+        - $ref: "#/components/parameters/vendorId"
+        - $ref: "#/components/parameters/bpId"
+      responses:
+        '200':
+          description: Disconnect device success
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "../schemas/devices.yml#/Error"
+
+components:
+  parameters:
+    bpId:
+      name: bpId
+      description: business partner id
+      in: header
+      required: true
+      schema:
+        type: string
+    vendorId:
+      name: vendorId
+      description: vendorId
+      in: path
+      required: true
+      schema:
+        type: integer
