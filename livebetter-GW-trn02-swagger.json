@@ -1,8 +1,9 @@
 {
   "swagger": "2.0",
-  "info": {
+ "info": {
     "version": "v1",
-    "title": "livebetter-GW"
+    "title": "livebetter API Documentation",
+    "name": Medibank
   },
   "host": "livebetter-api-trn02.intdev.ha-medibank.com",
   "schemes": [
