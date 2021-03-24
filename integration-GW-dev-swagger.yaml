@@ -1,0 +1,147 @@
+---
+swagger: "2.0"
+info:
+  version: "v1"
+  title: "integration-GW"
+host: "integration-api-dev01.intdev.ha-medibank.com"
+schemes:
+- "https"
+paths:
+  /medibank/claims/v1/searchHistory:
+    get:
+      description: "Search Claims History API"
+      parameters:
+      - name: "x-channel"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "201":
+          description: "connect success"
+        "400":
+          description: "Bad Request"
+        "500":
+          description: "Request Processing Error"
+        "401":
+          description: "Unauthorised"
+      security:
+      - DefaultAuthorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "Access-Control-Request-Method"
+        in: "header"
+        description: "The HTTP method that is being authroised for cross-origin requests."
+        required: true
+        type: "string"
+      - name: "Access-Control-Request-Headers"
+        in: "header"
+        description: "A comma-separated list of headers that will be set in the cross-origin\
+          \ request."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /medibank/claims/v1/serviceItems:
+    get:
+      description: "Claims Search Service Items API"
+      parameters:
+      - name: "x-channel"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "201":
+          description: "connect success"
+        "400":
+          description: "Bad Request"
+        "500":
+          description: "Request Processing Error"
+        "401":
+          description: "Unauthorised"
+      security:
+      - DefaultAuthorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "Access-Control-Request-Method"
+        in: "header"
+        description: "The HTTP method that is being authroised for cross-origin requests."
+        required: true
+        type: "string"
+      - name: "Access-Control-Request-Headers"
+        in: "header"
+        description: "A comma-separated list of headers that will be set in the cross-origin\
+          \ request."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /medibank/policies/v1/premiumPayments:
+    get:
+      description: "Payments Search Premium Payment History API"
+      parameters:
+      - name: "x-channel"
+        in: "header"
+        required: false
+        type: "string"
+      responses:
+        "201":
+          description: "connect success"
+        "400":
+          description: "Bad Request"
+        "500":
+          description: "Request Processing Error"
+        "401":
+          description: "Unauthorised"
+      security:
+      - DefaultAuthorizer: []
+    options:
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "Access-Control-Request-Method"
+        in: "header"
+        description: "The HTTP method that is being authroised for cross-origin requests."
+        required: true
+        type: "string"
+      - name: "Access-Control-Request-Headers"
+        in: "header"
+        description: "A comma-separated list of headers that will be set in the cross-origin\
+          \ request."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+securityDefinitions:
+  DefaultAuthorizer:
+    type: "apiKey"
+    name: "APISessionToken"
+    in: "header"
+    x-amazon-apigateway-authtype: "custom"
