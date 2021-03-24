@@ -1,0 +1,1764 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "livebetter-GW"
+  },
+  "host": "livebetter-api-trn02.intdev.ha-medibank.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/livebetter/challenges/v1/challengeInfo": {
+      "get": {
+        "description": "get active challenges",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Get Challenge Info Success",
+            "schema": {
+              "$ref": "#/definitions/ChallengeInfoResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/challenges/v1/joinChallenge": {
+      "post": {
+        "description": "Join a Challenge",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ChallengesPostRequest",
+            "description": "Join Challenge Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChallengesPostRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Join Challenge Success",
+            "schema": {
+              "$ref": "#/definitions/ChallengesPostResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/challenges/v1/recommendations": {
+      "get": {
+        "description": "Get all goal recommendations",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get device data success",
+            "schema": {
+              "$ref": "#/definitions/RecommendedChallenges"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/challenges/v1/trackChallenge/{challengeId}": {
+      "get": {
+        "description": "get challenge for challengeId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "description": "challengeId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Get Challenge Details Success",
+            "schema": {
+              "$ref": "#/definitions/ChallengesGetResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/members/v1/appDevices": {
+      "get": {
+        "description": "get devices data",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get device data success",
+            "schema": {
+              "$ref": "#/definitions/AppDevicesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error"
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Connect device data",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ConnectDevicesRequest",
+            "description": "Connect Devices Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConnectDevicesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "connect success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error"
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "put": {
+        "description": "Manual sync devices",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DevicesSyncRequest",
+            "description": "Manual Sync Devices Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DevicesSyncRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "manual sync success",
+            "schema": {
+              "$ref": "#/definitions/AppDevicesInfo"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error"
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/members/v1/appDevices/{vendorId}": {
+      "delete": {
+        "description": "disconnect device",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vendorId",
+            "in": "path",
+            "description": "device vendorId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "disconnect success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error"
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livebetter/members/v1/registration": {
+      "post": {
+        "description": "livebetter member registration",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "LBRegistrationRequest",
+            "description": "livebetter member registration Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LBRegistrationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "livebetter member registration success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorised"
+          },
+          "500": {
+            "description": "Request Processing Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "DefaultAuthorizer": []
+          }
+        ]
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Access-Control-Request-Method",
+            "in": "header",
+            "description": "The HTTP method that is being authroised for cross-origin requests.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Access-Control-Request-Headers",
+            "in": "header",
+            "description": "A comma-separated list of headers that will be set in the cross-origin request.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "DefaultAuthorizer": {
+      "type": "apiKey",
+      "name": "APISessionToken",
+      "in": "header",
+      "x-amazon-apigateway-authtype": "custom"
+    }
+  },
+  "definitions": {
+    "ChallengeRecommendedTrackingApp": {
+      "type": "object",
+      "properties": {
+        "vendorDisplayName": {
+          "type": "string"
+        },
+        "vendorId": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lastSyncDate": {
+          "type": "string"
+        },
+        "notifyDisconnected": {
+          "type": "integer"
+        },
+        "remoteSyncDeviceId": {
+          "type": "string"
+        },
+        "vendorName": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "hasRemoteSync": {
+          "type": "boolean"
+        },
+        "isDefaultDevice": {
+          "type": "boolean"
+        },
+        "connectionUrl": {
+          "type": "string",
+          "description": "connection url with sprout-token to connect to vendor"
+        },
+        "iconUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengesPostResponse": {
+      "type": "object",
+      "properties": {
+        "challengeId": {
+          "type": "integer"
+        },
+        "potentialBonusPoints": {
+          "type": "string"
+        },
+        "recommendedTrackingApps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeRecommendedTrackingApp"
+          }
+        },
+        "isBonusChallenge": {
+          "type": "integer"
+        },
+        "challengeName": {
+          "type": "string"
+        },
+        "challengeType": {
+          "type": "string",
+          "enum": [
+            "goal",
+            "competition"
+          ]
+        },
+        "challengeDescription": {
+          "type": "string"
+        },
+        "potentialBonusCurrency": {
+          "type": "string"
+        },
+        "challengeInstruction": {
+          "type": "string"
+        },
+        "isJoined": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChallengeInfoResponse": {
+      "type": "object",
+      "properties": {
+        "challenges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeInfo"
+          }
+        },
+        "totalNumberOfChallenges": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChallengePeriodActivity": {
+      "type": "object",
+      "properties": {
+        "goal": {
+          "type": "string"
+        },
+        "unit_id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "DetailedErrorMessage": {
+      "type": "object",
+      "properties": {
+        "errorDescription": {
+          "type": "string"
+        },
+        "userErrorDescription": {
+          "type": "string"
+        },
+        "attributeName": {
+          "type": "string"
+        }
+      }
+    },
+    "AppDevicesResponse": {
+      "type": "array",
+      "description": "An array of objects corresponding to each available external service for activity tracking",
+      "items": {
+        "$ref": "#/definitions/AppDevicesInfo"
+      }
+    },
+    "ChallengeEligibleActivity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "DevicesSyncData": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DevicesSyncActivity"
+          }
+        }
+      }
+    },
+    "ConnectDevicesRequest": {
+      "type": "object",
+      "required": [
+        "serviceUserId",
+        "vendorId"
+      ],
+      "properties": {
+        "serviceUserId": {
+          "type": "string"
+        },
+        "vendorId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChallengeTrackDeadLine": {
+      "type": "object",
+      "properties": {
+        "days_left": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChallengesGetResponse": {
+      "type": "object",
+      "properties": {
+        "isSolo": {
+          "type": "integer"
+        },
+        "group_data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeGroupData"
+          }
+        },
+        "isEndingToday": {
+          "type": "boolean"
+        },
+        "isBonusChallenge": {
+          "type": "integer"
+        },
+        "restartGoalTs": {
+          "type": "string"
+        },
+        "challengeDescription": {
+          "type": "string"
+        },
+        "maxTeamMembers": {
+          "type": "integer"
+        },
+        "potentialBonusCurrency": {
+          "type": "string"
+        },
+        "isMember": {
+          "type": "integer"
+        },
+        "challengeEntityType": {
+          "type": "string",
+          "enum": [
+            "company",
+            "department",
+            "group",
+            "partner",
+            "region",
+            "user"
+          ]
+        },
+        "totalPeriods": {
+          "type": "integer"
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "minTeamMembers": {
+          "type": "integer"
+        },
+        "challengeParticipants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeUserSimple"
+          }
+        },
+        "challengePublic": {
+          "type": "integer"
+        },
+        "latest_activity_log_id": {
+          "type": "string"
+        },
+        "currentDayIndex": {
+          "type": "integer"
+        },
+        "activityUnitsIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "challengeName": {
+          "type": "string"
+        },
+        "restartIndex": {
+          "type": "integer"
+        },
+        "isEnded": {
+          "type": "integer"
+        },
+        "isCreator": {
+          "type": "boolean"
+        },
+        "adminChallengeId": {
+          "type": "integer"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeParticipant"
+          }
+        },
+        "isCompleted": {
+          "type": "integer"
+        },
+        "isDismissed": {
+          "type": "integer"
+        },
+        "numChallengeParticipants": {
+          "type": "integer"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "recommendedTrackingApps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeRecommendedTrackingApp"
+          }
+        },
+        "eligibleActivities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeEligibleActivity"
+          }
+        },
+        "challengeType": {
+          "type": "string",
+          "enum": [
+            "goal",
+            "competition"
+          ]
+        },
+        "message": {
+          "$ref": "#/definitions/ChallengeMessage"
+        },
+        "recommendedGoalsId": {
+          "type": "string"
+        },
+        "challengeDeadline": {
+          "type": "string"
+        },
+        "activityUnitDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeActivityUnitDetail"
+          }
+        },
+        "challengeId": {
+          "type": "integer"
+        },
+        "numPrivateChallengeParticipants": {
+          "type": "integer"
+        },
+        "potentialBonusPoints": {
+          "type": "string"
+        },
+        "isRecommended": {
+          "type": "integer"
+        },
+        "userActivityLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengeUserActivityLog"
+          }
+        },
+        "progress": {
+          "$ref": "#/definitions/ChallengeProgress"
+        },
+        "track_deadline": {
+          "$ref": "#/definitions/ChallengeTrackDeadLine"
+        },
+        "challengeSubentityType": {
+          "type": "string",
+          "enum": [
+            "",
+            "companyTeam",
+            "userTeam"
+          ]
+        },
+        "teamSizeRequirements": {
+          "$ref": "#/definitions/ChallengeTeamSizeRequirement"
+        },
+        "challengeInstruction": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        }
+      }
+    },
+    "DevicesSyncRequest": {
+      "type": "object",
+      "required": [
+        "vendorId"
+      ],
+      "properties": {
+        "serviceUserId": {
+          "type": "string",
+          "description": "service user id"
+        },
+        "data": {
+          "$ref": "#/definitions/DevicesSyncData"
+        },
+        "vendorId": {
+          "type": "integer",
+          "description": "The unique ID for the service"
+        }
+      }
+    },
+    "ChallengePeriod": {
+      "type": "object",
+      "properties": {
+        "isCurrent": {
+          "type": "integer"
+        },
+        "goal": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengePeriodActivity"
+          }
+        },
+        "index": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer"
+        },
+        "startDate": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengeActivityUnitDetail": {
+      "type": "object",
+      "required": [
+        "activityCategory",
+        "amount",
+        "name",
+        "unit",
+        "unit_id",
+        "unit_type"
+      ],
+      "properties": {
+        "unit": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Goal target value in points."
+        },
+        "show_in_tracker": {
+          "type": "string",
+          "description": "Provided when unit_type = activity_unit\n- 0 when this activity is NOT manually trackable.\n- 1 when this activity is manually trackable.\n"
+        },
+        "activityCategory": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Activiy name or activity category name."
+        },
+        "activity_id": {
+          "type": "string",
+          "description": "Provided when unit_type = activity_unit"
+        },
+        "unit_type": {
+          "type": "string",
+          "enum": [
+            "activity_unit",
+            "activity_category"
+          ]
+        },
+        "unit_id": {
+          "type": "string"
+        },
+        "unit_singular": {
+          "type": "string",
+          "description": "Provided when unit_type = activity_unit"
+        },
+        "points": {
+          "type": "string",
+          "description": "Provided when unit_type = activity_unit"
+        }
+      }
+    },
+    "ChallengeProgress": {
+      "type": "object",
+      "required": [
+        "overallAverageValue",
+        "overallLeaderValue",
+        "overallPointsTargetValue",
+        "overallUserValue",
+        "rank",
+        "unitName"
+      ],
+      "properties": {
+        "overallLeaderValue": {
+          "type": "integer",
+          "description": "The rank 1 entity's score"
+        },
+        "currentPeriodIndex": {
+          "type": "integer"
+        },
+        "overallAverageValue": {
+          "type": "integer",
+          "description": "The average score of all participants."
+        },
+        "currentPeriodStartDate": {
+          "type": "string"
+        },
+        "unitName": {
+          "type": "string",
+          "description": "the target value's unit name."
+        },
+        "overallPointsTargetValue": {
+          "type": "string",
+          "description": "The goal target value in points. It is 0 when the challenge is competition challenge."
+        },
+        "userPercentUnitName": {
+          "type": "string"
+        },
+        "currentPeriodEndDate": {
+          "type": "string"
+        },
+        "userPercentValue": {
+          "type": "integer"
+        },
+        "overallUserValue": {
+          "type": "integer",
+          "description": "- goal: The overall % of progress in whole periods.\n- competition: The total points earned in whole periods.\n"
+        },
+        "currentPeriodPoints": {
+          "type": "integer",
+          "description": "The total points earned in current period."
+        },
+        "userPointsValue": {
+          "type": "integer"
+        },
+        "userPointsUnitName": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer",
+          "description": "The viewer's entity's rank."
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChallengePeriod"
+          }
+        },
+        "currentPeriodValue": {
+          "type": "integer",
+          "description": "The % of progress in current period"
+        }
+      }
+    },
+    "ChallengeMessage": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "LBRegistrationRequest": {
+      "type": "object",
+      "required": [
+        "channel",
+        "firstName",
+        "lastName",
+        "loyaltyProgramParticipantIndicator"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "loyaltyProgramParticipantIndicator": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ChallengeInfo": {
+      "type": "object",
+      "properties": {
+        "isSolo": {
+          "type": "integer"
+        },
+        "challengeId": {
+          "type": "integer"
+        },
+        "isRecommended": {
+          "type": "integer"
+        },
+        "challengeName": {
+          "type": "string"
+        },
+        "restartIndex": {
+          "type": "integer"
+        },
+        "challengeDescription": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "recommendedGoalsId": {
+          "type": "string"
+        },
+        "challengeDeadline": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "string"
+        }
+      }
+    },
+    "RecommendedChallenges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/RecommendedChallenge"
+      }
+    },
+    "ChallengeActivityQuantity": {
+      "type": "object",
+      "properties": {
+        "activityUnitId": {
+          "type": "integer"
+        },
+        "quantityUnits": {
+          "type": "integer"
+        }
+      }
+    },
+    "DevicesSyncActivity": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "start time of activity"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "end time of activity"
+        },
+        "source": {
+          "type": "string",
+          "description": "source device"
+        },
+        "metrics": {
+          "$ref": "#/definitions/ActivityMetrics"
+        },
+        "type": {
+          "type": "string",
+          "description": "type of activity"
+        },
+        "manual": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ChallengeGroupData": {
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "last_updated": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "integer"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengesPostRequest": {
+      "type": "object",
+      "required": [
+        "challenger",
+        "description",
+        "duration",
+        "entity",
+        "frequency",
+        "instruction",
+        "name",
+        "public",
+        "published",
+        "requirement",
+        "solo",
+        "start",
+        "type"
+      ],
+      "properties": {
+        "bonusAutoReward": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string",
+          "description": "The start date of the challenge that is being created (YYYY-MM-DD format)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the challenge that is being created"
+        },
+        "isBonusChallenge": {
+          "type": "integer"
+        },
+        "solo": {
+          "type": "integer",
+          "description": "Indication of whether the challenge is solo (takes on value of either 1 or 0)"
+        },
+        "requirement": {
+          "type": "string",
+          "description": "Requirement of the challenge that is being created.\n- one: Deprecated.\n- all: If the challenge type is goal, means the user needs to do the exact amount from each activity\n- combo: \"combination of activities\" contributes to the challenge - e.g., if the challenge is of type \"goal\" and there is running and walking as activities, with each own target set, the user can track just running or just walking - the target is the total number of points irrespective of each of the eligible activities contributes to the challenge.\n",
+          "enum": [
+            "one",
+            "all",
+            "combo"
+          ]
+        },
+        "published": {
+          "type": "integer",
+          "description": "- 0: The ones which do not go in the directory\n- 1: The ones which go in the directory\n"
+        },
+        "potentialBonusCurrency": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of challenge that is being created (\"race\", \"competition\", \"goal\")\n- race: Deprecated.\n- competition: Competete who gets the point the most. Always use requirement = all and frequency = total.\n- goal: Set target points to track\n",
+          "enum": [
+            "goal",
+            "competition",
+            "race"
+          ]
+        },
+        "recommendedGoalsId": {
+          "type": "string",
+          "description": "foreign key to the recommended goals table if this is a recommended goal"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Frequency of the challenge that is being created",
+          "enum": [
+            "daily",
+            "weekly",
+            "monthly",
+            "total"
+          ]
+        },
+        "recommended": {
+          "type": "integer",
+          "description": "Default value is 0 (takes on value of either 1 or 0)"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "The duration in duration of the challenge that is being created"
+        },
+        "public": {
+          "type": "integer",
+          "description": "Indication of whether the challenge is public (takes on value of either 1 or 0)"
+        },
+        "activityQuantity": {
+          "type": "array",
+          "description": "Required only when a challenge is being created for activity units",
+          "items": {
+            "$ref": "#/definitions/ChallengeActivityQuantity"
+          }
+        },
+        "comboPoints": {
+          "type": "integer",
+          "description": "The total points a user can get in completing a challenge. This is required when the requirement is combo."
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Do 150 minutes on the Elliptical machine weekly for 4 weeks."
+        },
+        "potentialBonusPoints": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the challenge that is being created"
+        },
+        "challenger": {
+          "type": "integer",
+          "description": "The entity id of the challenge. The challenge creator's id"
+        },
+        "restartDay": {
+          "type": "string",
+          "description": "the restart day (first day of a cycle) of a recommended goal"
+        },
+        "entity": {
+          "type": "string",
+          "description": "The scale of the challenge that is being creater\n- user: user v.s. user challenge.\n- group: team v.s. team challenge.\n- company: Company-wide user v.s. user challenge. Only available if logged-in user's role = moderator/partner-admin/admin.\n- department: department v.s. department challenge. Only available if logged-in user's role = moderator/partner-admin/admin.\n- region: region v.s. region challenge. Only available if logged-in user's role = moderator/partner-admin/admin.\n",
+          "enum": [
+            "user",
+            "group",
+            "department",
+            "region",
+            "company"
+          ]
+        }
+      }
+    },
+    "ExternalError": {
+      "type": "object",
+      "properties": {
+        "errorDesc": {
+          "type": "string"
+        },
+        "externalSystemName": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "errorCode",
+        "errorDesc"
+      ],
+      "properties": {
+        "serviceType": {
+          "type": "string"
+        },
+        "userErrorDesc": {
+          "type": "string"
+        },
+        "errorDesc": {
+          "type": "string"
+        },
+        "detailedErrorMessages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DetailedErrorMessage"
+          }
+        },
+        "externalErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExternalError"
+          }
+        },
+        "errorCode": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengeParticipant": {
+      "type": "object",
+      "properties": {
+        "entityType": {
+          "type": "string"
+        },
+        "imageURL": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subentityType": {
+          "type": "string"
+        },
+        "entityId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengeUserSimple": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "preferredName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChallengeTeamSizeRequirement": {
+      "type": "object",
+      "properties": {
+        "minimumUsers": {
+          "type": "integer"
+        },
+        "maximumUsers": {
+          "type": "integer"
+        }
+      }
+    },
+    "ActivityMetrics": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "integer",
+          "description": "steps count"
+        }
+      }
+    },
+    "RecommendedChallenge": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isBonusChallenge": {
+          "type": "integer"
+        },
+        "units": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            }
+          }
+        },
+        "potentialBonusCurrency": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "categoryName": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "activitySlug": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer"
+        },
+        "public": {
+          "type": "integer"
+        },
+        "challenger": {
+          "type": "integer"
+        },
+        "bonusAutoReward": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "durationUnits": {
+          "type": "string"
+        },
+        "solo": {
+          "type": "integer"
+        },
+        "published": {
+          "type": "integer"
+        },
+        "requirement": {
+          "type": "string"
+        },
+        "recommendedGoalsId": {
+          "type": "string"
+        },
+        "categorySlug": {
+          "type": "string"
+        },
+        "recommended": {
+          "type": "integer"
+        },
+        "instruction": {
+          "type": "string"
+        },
+        "potentialBonusPoints": {
+          "type": "string"
+        },
+        "goalName": {
+          "type": "string"
+        },
+        "category": {
+          "type": "integer"
+        },
+        "restartDay": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        }
+      }
+    },
+    "ChallengeUserActivityLog": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "activityName": {
+          "type": "string"
+        },
+        "categoryName": {
+          "type": "string"
+        },
+        "activityId": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "timestampCreated": {
+          "type": "string"
+        },
+        "inputDevice": {
+          "type": "string"
+        },
+        "activityUnitId": {
+          "type": "integer"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "activityLogId": {
+          "type": "integer"
+        }
+      }
+    },
+    "AppDevicesInfo": {
+      "type": "object",
+      "properties": {
+        "vendorDisplayName": {
+          "type": "string",
+          "description": "slug to identify the vendor (can later be used in requests or other app internal references)"
+        },
+        "vendorId": {
+          "type": "integer",
+          "description": "The unique ID for the service"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description to show users"
+        },
+        "lastSyncDate": {
+          "type": "string"
+        },
+        "notifyDisconnected": {
+          "type": "integer",
+          "description": "The server can determine based on some rules if the service got disconnected and if so provide a flag to client to optionally let the user know their previously connected app or device is no longer connected."
+        },
+        "remoteSyncDeviceId": {
+          "type": "string"
+        },
+        "vendorName": {
+          "type": "string",
+          "description": "slug to identify the vendor (can later be used in requests or other app internal references)"
+        },
+        "logoUrl": {
+          "type": "string",
+          "description": "The logo's url"
+        },
+        "connected": {
+          "type": "boolean",
+          "description": "- true: If the user is already connected\n- false: If the user is not already connected\n"
+        },
+        "hasRemoteSync": {
+          "type": "boolean",
+          "description": "- true: Sprout can sync with device without opening the mobile app\n- false: Sprout can not sync with device without opening the mobile app\n"
+        },
+        "isDefaultDevice": {
+          "type": "boolean"
+        },
+        "connectionUrl": {
+          "type": "string",
+          "description": "connection url with sprout-token to connect to vendor"
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "The icon's url"
+        }
+      }
+    }
+  }
+}
